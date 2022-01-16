@@ -1,5 +1,9 @@
-.PHONY: clean clean-build clean-pyc clean-test coverage dist docs help install lint lint/flake8 lint/black
+.PHONY: clean clean-build clean-pyc clean-test coverage dist docs help install lint lint/flake8 lint/black lint/typing setup
 .DEFAULT_GOAL := help
+
+PY=python3.10
+ACTIVATE=venv/bin/activate.fish
+VENV=venv
 
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
@@ -21,10 +25,10 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 
-BROWSER := python -c "$$BROWSER_PYSCRIPT"
+BROWSER := $(PY) -c "$$BROWSER_PYSCRIPT"
 
 help:
-	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+	@$(PY) -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
@@ -52,7 +56,10 @@ lint/flake8: ## check style with flake8
 lint/black: ## check style with black
 	black --check calculator tests
 
-lint: lint/flake8 lint/black ## check style
+lint/typing: ## check static typing
+	mypy calculator
+
+lint: lint/flake8 lint/black lint/typing ## check style
 
 test: ## run tests quickly with the default Python
 	pytest
@@ -87,3 +94,10 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+setup: ## Create virtual environment and install requirements-dev.txt
+	( \
+	$(PY) -m venv $(VENV); \
+	./$(VENV)/bin/pip install --upgrade pip; \
+	./$(VENV)/bin/pip install -r requirements_dev.txt; \
+	)
