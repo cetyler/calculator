@@ -12,6 +12,7 @@ Welcome to calculator's documentation!
    contributing
    authors
    history
+   roadmap
 
 Indices and tables
 ==================
