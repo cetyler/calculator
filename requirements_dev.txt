@@ -6,6 +6,7 @@ coverage
 Sphinx
 Click
 pytest
+pytest-cov
 black
 flit
 mypy

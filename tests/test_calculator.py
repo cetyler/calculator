@@ -6,7 +6,7 @@ import pytest
 
 from click.testing import CliRunner
 
-from calculator import calculator
+#from calculator import calculator
 from calculator import cli
 
 
