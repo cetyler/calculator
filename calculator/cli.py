@@ -22,7 +22,16 @@ class NotANumber(Exception):
 
 
 def process_input(user_string, previous):
-    """Get the command and numbers is any."""
+    """Get the command and numbers is any.
+
+    :param user_string: Input from the user.
+    :type user_string: str
+    :param previous: Previous answer.
+    :type previous: float or int
+    :raises NotANumber: Numbers must be integers, floats.
+    :return: Command and number(s).
+    :rtype: string, int or float
+    """
 
     answer = user_string.replace("(", ",").replace(")", "").split(",")
 
@@ -44,6 +53,10 @@ def process_input(user_string, previous):
 
 
 def main():
+    """Run CLI.
+
+    :raises InvalidCommand: Only valid commands will be accepted.
+    """
     print("Welcome to the calculator program.")
     print("Type 'help' for a list of functions.")
     b = Basic()

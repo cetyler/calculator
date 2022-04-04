@@ -21,6 +21,12 @@ class Basic:
         self.previous_result: float = 0
 
     def add(self, *args):
+        """Add multiple numbers.
+
+        :raises NotEnoughNumbers: A minimum of 2 numbers are required.
+        :return: Summation of the provided numbers.
+        :rtype: int or float
+        """
         total = 0
         count = 0
         for number in args:
@@ -32,6 +38,12 @@ class Basic:
         return total
 
     def sub(self, *args):
+        """Subtract multiple numbers.
+
+        :raises NotEnoughNumbers: A minimum of 2 numbers are required.
+        :return: Total after subtracting the provided numbers.
+        :rtype: int or float
+        """
         total = 0
         count = 0
         for number in args:
@@ -47,6 +59,12 @@ class Basic:
         return total
 
     def mul(self, *args):
+        """Multiple multiple numbers.
+
+        :raises NotEnoughNumbers: A minimum of 2 numbers are required.
+        :return: Total after multiplying the provided numbers.
+        :rtype: int or float
+        """
         total = 0
         count = 0
         for number in args:
@@ -62,6 +80,13 @@ class Basic:
         return total
 
     def div(self, *args):
+        """Divide multiple numbers.
+
+        :raises DivideByZero: Cannot divide by 0.
+        :raises NotEnoughNumbers: A minimum of 2 numbers are required.
+        :return: Total after dividing the provided numbers.
+        :rtype: int or float
+        """
         total = 0
         count = 0
         for number in args:
